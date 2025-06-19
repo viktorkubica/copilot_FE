@@ -1,0 +1,287 @@
+<style>
+      .webchat__send-box__main {
+        border-radius: 10px !important;
+        padding: 1% !important;
+      }
+
+      .epsylum-button {
+        background-color: transparent;
+        color: white;
+        border: 1px solid white;
+        font-family: Satoshi Sans-serif;
+        font-size: 19px;
+        font-weight: 600;
+        transition-duration: 0.3s;
+        border-style: solid;
+        border-width: 1px 1px 1px 1px;
+        padding: 25px 50px 25px 50px;
+        text-align: center;
+        transition: all 0.3s;
+        line-height: 1;
+        display: inline-block;
+        border-radius: 3px;
+      }
+
+      .epsylum-button:hover {
+        background-color: white;
+        color: black;
+      }
+
+      .webchat__basic-transcript__scrollable {
+        overflow-y: hidden !important;
+        overflow-x: hidden !important;
+        overflow: hidden !important;
+      }
+
+      .webchat__basic-transcript__scrollable:hover {
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+      }
+
+      #webchat {
+        border: 0px solid white !important;
+        border-radius: 0px !important;
+        height: calc(90%) !important;
+        position: relative !important;
+        overflow-y: hidden !important;
+        width: calc(70%) !important;
+        left: calc(20%) !important;
+      }
+
+      @media (max-width: 768px) {
+        #webchat {
+          width: calc(100%) !important;
+          left: calc(0%) !important;
+          height: calc(100%) !important;
+        }
+      }
+
+      @media (max-width: 480px) {
+        #webchat {
+          width: calc(100%) !important;
+          left: calc(0%) !important;
+          height: calc(100%) !important;
+        }
+      }
+
+      .fake_hr {
+        border-bottom: solid 1px #e6e6e6;
+        left: 20%;
+        position: relative;
+        width: 70%;
+      }
+
+      @media (max-width: 768px) {
+        .fake_hr {
+          left: 0% !important;
+          width: 100% !important;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .fake_hr {
+          left: 0% !important;
+          width: 100% !important;
+        }
+      }
+
+        .responsive-section {
+          height: 900px;
+          width: 100%;
+        }
+
+        @media (max-width: 768px) {
+          .responsive-section {
+            height: 700px;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .responsive-section {
+            height: 525px;
+          }
+        }
+
+      .webchat__typingIndicator {
+        transform: scale(0.6);
+        width: 500px;
+        padding-left: 0px !important;
+
+      }
+
+
+        @media (max-width: 768px) {
+          .webchat__typingIndicator {
+            transform: scale(0.4);
+            width: 400px;
+            padding-left: 0px !important;
+            margin-left: 0px !important;
+          }
+        }
+
+        @media (max-width: 480px) {
+          .webchat__typingIndicator {
+            transform: scale(0.4);
+            width: 500px;
+            padding-left: 0px !important;
+          }
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="responsive-section">
+      <div class="fake_hr"></div>
+      <div id="webchat" role="main"></div>
+    </section>
+
+    <script crossorigin="anonymous" src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"></script>
+
+    <script>
+      (async function () {
+        const styleOptions = {
+          hideUploadButton: true,
+          avatarBorderRadius: '100%',
+          avatarSize: 40,
+          botAvatarBackgroundColor: 'rgba(255, 255, 255, 0.1)',
+          botAvatarImage: 'https://raw.githubusercontent.com/danielluptak/barbercss/refs/heads/main/Image2.jpg',
+          botAvatarInitials: 'EP',
+          userAvatarBackgroundColor: 'rgba(255, 255, 255, 0.1)',
+          userAvatarImage: 'https://raw.githubusercontent.com/danielluptak/barbercss/refs/heads/main/Image2.jpg',
+          showAvatarInGroup: 'status'
+        };
+
+        const styleSet = window.WebChat.createStyleSet({
+          bubbleBackground: 'rgba(255, 255, 255, 0.1)',
+          bubbleTextColor: 'white',
+          sendBoxBackground: 'rgba(255, 255, 255, 0.1)',
+          sendBoxPlaceholderColor: 'white',
+          sendBoxTextColor: 'white',
+          bubbleBorderWidth: 1,
+          bubbleBorderRadius: 10,
+          bubbleBorderColor: 'white',
+          bubbleFromUser: 'black',
+          bubbleFromUserBorderRadius: 10,
+          bubbleFromUserBorderStyle: 'solid',
+          bubbleFromUserBackground: 'rgba(255, 255, 255, 0.1)',
+          bubbleFromUserTextColor: 'white',
+          rootHeight: '100%',
+          hideToaster: false,
+          groupTimestamp: false,
+          timestampColor: 'white',
+          timestampFormat: 'AbsoluteTime',
+          transcriptActivityVisualKeyboardIndicatorStyle: 'none',
+          transcriptActivityVisualKeyboardIndicatorWidth: 0,
+          suggestedActionBorderStyle: 'none',
+          suggestedActionKeyboardFocusIndicatorBorderStyle: 'none',
+          sendBoxButtonShadeBorderRadius: 5,
+          sendBoxButtonBorderStyle: 'none',
+          sendBoxButtonShadeInset: 3,
+          sendBoxHeight: 60,
+          sendBoxBorderBottom: 'solid 1px #E6E6E6',
+          sendBoxBorderLeft: 'solid 1px #E6E6E6',
+          sendBoxBorderRight: 'solid 1px #E6E6E6',
+          sendBoxBorderTop: 'solid 1px #E6E6E6',
+          sendBoxBorderRadius: 5,
+          sendBoxButtonKeyboardFocusIndicatorBorderColor: 'rgba(0, 255, 255, 0)',
+          sendBoxButtonKeyboardFocusIndicatorBorderRadius: '100%',
+          sendBoxButtonKeyboardFocusIndicatorBorderStyle: 'none',
+          sendBoxButtonKeyboardFocusIndicatorBorderWidth: 0,
+          sendBoxButtonKeyboardFocusIndicatorInset: 0,
+          sendBoxButtonColor: 'rgba(255, 255, 255, 1)',
+          sendBoxButtonColorOnActive: 'rgba(255, 255, 255, 1)',
+          sendBoxButtonShadeColorOnActive: 'rgba(0, 0, 0, .4)',
+          sendBoxButtonColorOnHover: 'rgba(0, 0, 0, 1)',
+          typingAnimationDuration: 5000,
+        //   typingAnimationHeight: 20,
+          typingAnimationWidth: 400,
+          typingAnimationBackgroundImage: `url('https://raw.githubusercontent.com/danielluptak/barbercss/refs/heads/main/nieco.svg')`
+        });
+
+        styleSet.root = {
+          ...styleSet.root,
+          background: 'transparent',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundBlendMode: 'darken'
+        };
+
+        styleSet.textContent = {
+          ...styleSet.textContent,
+          fontFamily: 'Manrope, Sans-serif !important',
+          fontOpticalSizing: 'auto !important',
+          fontWeight: '600 !important',
+          fontSize: '15px !important',
+          fontStyle: 'normal !important'
+        };
+
+        const tokenEndpointURL = new URL(
+          'https://defaultb25736d2bbc9419d9c5a389c92ea93.ce.environment.api.powerplatform.com/powervirtualagents/botsbyschema/cr5bf_epsylum/directline/token?api-version=2022-03-01-preview'
+        );
+
+        const locale = document.documentElement.lang || 'ja';
+
+        const apiVersion = tokenEndpointURL.searchParams.get('api-version');
+
+        const [directLineURL, token] = await Promise.all([
+          fetch(new URL(`/powervirtualagents/regionalchannelsettings?api-version=${apiVersion}`, tokenEndpointURL))
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error('Failed to retrieve regional channel settings.');
+              }
+
+              return response.json();
+            })
+            .then(({ channelUrlsById: { directline } }) => directline),
+          fetch(tokenEndpointURL)
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error('Failed to retrieve Direct Line token.');
+              }
+
+              return response.json();
+            })
+            .then(({ token }) => token)
+        ]);
+
+        const directLine = WebChat.createDirectLine({ domain: new URL('v3/directline', directLineURL), token });
+
+        const subscription = directLine.connectionStatus$.subscribe({
+          next(value) {
+            if (value === 2) {
+              directLine
+                .postActivity({
+                  localTimezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                  locale,
+                  name: 'startConversation',
+                  type: 'event'
+                })
+                .subscribe();
+
+              subscription.unsubscribe();
+            }
+          }
+        });
+
+        WebChat.renderWebChat({ directLine, locale, styleSet, styleOptions }, document.getElementById('webchat'));
+
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+
+       const sendButton = document.querySelector('.webchat__send-box__button');
+        if (sendButton) {
+          const img = document.createElement('img');
+          img.src = 'https://raw.githubusercontent.com/danielluptak/barbercss/refs/heads/main/Imagee.png';
+          img.alt = 'Send';
+          img.style.backgroundColor = 'rgba(255, 255, 255, 1)';
+          img.style.borderRadius = '50%';
+          img.style.border = '5px solid rgba(255, 255, 255, 1)';
+          img.style.width = '30px';
+          img.style.height = '30px';
+          img.style.cursor = 'pointer';
+
+          sendButton.innerHTML = '';
+          sendButton.appendChild(img);
+        }
+      })().catch((err) => console.error(err));
+    </script>
+ 
